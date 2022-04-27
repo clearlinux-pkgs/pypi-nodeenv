@@ -4,7 +4,7 @@
 #
 Name     : pypi-nodeenv
 Version  : 1.6.0
-Release  : 35
+Release  : 36
 URL      : https://files.pythonhosted.org/packages/75/8d/14c4ac588711f8de0dd02a11460ed72f48cab65a998994ca20f40c6e1a8f/nodeenv-1.6.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/75/8d/14c4ac588711f8de0dd02a11460ed72f48cab65a998994ca20f40c6e1a8f/nodeenv-1.6.0.tar.gz
 Summary  : Node.js virtual environment builder
@@ -15,9 +15,6 @@ Requires: pypi-nodeenv-license = %{version}-%{release}
 Requires: pypi-nodeenv-python = %{version}-%{release}
 Requires: pypi-nodeenv-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-Provides: nodeenv
-Provides: nodeenv-python
-Provides: nodeenv-python3
 
 %description
 ===========================
@@ -76,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641459509
+export SOURCE_DATE_EPOCH=1651102685
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
