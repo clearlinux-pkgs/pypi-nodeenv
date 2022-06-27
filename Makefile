@@ -1,5 +1,5 @@
 PKG_NAME := pypi-nodeenv
-URL = https://files.pythonhosted.org/packages/75/8d/14c4ac588711f8de0dd02a11460ed72f48cab65a998994ca20f40c6e1a8f/nodeenv-1.6.0.tar.gz
+URL = https://files.pythonhosted.org/packages/f3/9d/a28ecbd1721cd6c0ea65da6bfb2771d31c5d7e32d916a8f643b062530af3/nodeenv-1.7.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
