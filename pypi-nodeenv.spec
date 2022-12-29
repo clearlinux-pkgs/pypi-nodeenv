@@ -4,7 +4,7 @@
 #
 Name     : pypi-nodeenv
 Version  : 1.7.0
-Release  : 43
+Release  : 44
 URL      : https://files.pythonhosted.org/packages/f3/9d/a28ecbd1721cd6c0ea65da6bfb2771d31c5d7e32d916a8f643b062530af3/nodeenv-1.7.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/f3/9d/a28ecbd1721cd6c0ea65da6bfb2771d31c5d7e32d916a8f643b062530af3/nodeenv-1.7.0.tar.gz
 Summary  : Node.js virtual environment builder
@@ -16,6 +16,9 @@ Requires: pypi-nodeenv-python = %{version}-%{release}
 Requires: pypi-nodeenv-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(setuptools)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 ===========================
@@ -78,12 +81,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656343356
+export SOURCE_DATE_EPOCH=1672293310
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -100,8 +103,8 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-nodeenv
-cp %{_builddir}/nodeenv-1.7.0/LICENSE %{buildroot}/usr/share/package-licenses/pypi-nodeenv/65f1b0655756044b7fd3f2d81d27cb0b39c1d348
-cp %{_builddir}/nodeenv-1.7.0/debian-upstream/copyright %{buildroot}/usr/share/package-licenses/pypi-nodeenv/65f1b0655756044b7fd3f2d81d27cb0b39c1d348
+cp %{_builddir}/nodeenv-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-nodeenv/65f1b0655756044b7fd3f2d81d27cb0b39c1d348 || :
+cp %{_builddir}/nodeenv-%{version}/debian-upstream/copyright %{buildroot}/usr/share/package-licenses/pypi-nodeenv/65f1b0655756044b7fd3f2d81d27cb0b39c1d348 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
